@@ -20,6 +20,12 @@
     <a href="/datadog">Datadog</a>
   </li>
   <li>
+    <a href="/twitch">Twitch</a>
+  </li>
+  <li>
+    <a href="/dropbox">DropBox</a>
+  </li>
+  <li>
     <input type="text" bind:value={board} placeholder="custom" on:keypress={e => e.charCode === 13 ? goto(`/${board}`) : undefined}>
     <button on:click={goto(`/${board}`)}>
       View Custom
