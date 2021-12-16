@@ -10,6 +10,10 @@ export async function getJobs(board) {
     jobs = jobs.jobs.filter(j => {
       return j.location.name.includes('US') && !j.title.includes('Manager') && j.metadata.some(m => m.value === 'Engineering')
     })
+  } else if (board === 'gitlab') {
+    jobs = jobs.jobs.filter(j => {
+      return j.title.includes('Engineer') && !j.title.includes('Manager')
+    })
   } else if (board === 'reddit') {
     jobs = jobs.jobs.filter(j => {
       if (!j.location.name.includes('Remote')) {

@@ -4,11 +4,14 @@
   let board = ''
 </script>
 
-<h1>Job Search</h1>
+<h1>Greenhouse Remote Job Search</h1>
 
 <ul>
   <li>
     <a href="/github">GitHub</a>
+  </li>
+  <li>
+    <a href="/gitlab">GitLab</a>
   </li>
   <li>
     <a href="/reddit">Reddit</a>

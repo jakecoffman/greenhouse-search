@@ -1,6 +1,7 @@
 <script>
   import {onMount} from "svelte";
   import {getJob, getJobs} from "../services.js";
+  import { fly } from 'svelte/transition';
 
   let board, jobs
   onMount(async () => {
@@ -27,33 +28,35 @@
 <h1>{board}</h1>
 
 {#if !jobs}
-  <div>Loading...</div>
+  <div out:fly={{duration: 1, y: -30}}>Loading...</div>
 {:else}
-  <input type="text" bind:value="{query}" placeholder="Search">
-  <button on:click={()=>query=''}>x</button>
+  <article in:fly={{delay: 1, y: 30}}>
+    <input type="text" bind:value="{query}" placeholder="Search">
+    <button on:click={()=>query=''}>x</button>
 
-  {#if jobs.length === 0}
-    <div>No jobs found</div>
-  {/if}
-
-  <h2>
-    Jobs
-    {#if query.length < 2}
-      ({jobs.length})
-    {:else}
-      ({filteredJobs.length}/{jobs.length})
+    {#if jobs.length === 0}
+      <div>No jobs found</div>
     {/if}
-  </h2>
 
-  {#each filteredJobs as job}
-    <div class="jobs">
-      <a href="{job.absolute_url}" target="_blank">
-        {job.title}
-      </a>
-      <span>{job.location.name}</span>
-      <span>{new Date(job.updated_at).toLocaleString()}</span>
-    </div>
-  {/each}
+    <h2>
+      Jobs
+      {#if query.length < 2}
+        ({jobs.length})
+      {:else}
+        ({filteredJobs.length}/{jobs.length})
+      {/if}
+    </h2>
+
+    {#each filteredJobs as job}
+      <div class="jobs">
+        <a href="{job.absolute_url}" target="_blank">
+          {job.title}
+        </a>
+        <span>{job.location.name}</span>
+        <span>{new Date(job.updated_at).toLocaleString()}</span>
+      </div>
+    {/each}
+  </article>
 {/if}
 <style>
     .jobs {
