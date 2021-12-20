@@ -14,6 +14,26 @@ export async function getJobs(board) {
     jobs = jobs.jobs.filter(j => {
       return j.title.includes('Engineer') && !j.title.includes('Manager')
     })
+  } else if (board === 'hashicorp') {
+    jobs = jobs.jobs.filter(j => {
+      return j.location.name.includes('United States') && j.metadata.some(m => m.value === 'Engineering')
+    })
+  } else if (board === 'coinbase') {
+    jobs = jobs.jobs.filter(j => {
+      return j.location.name.includes('Remote - USA') && j.metadata.some(m => m.value === 'Engineering')
+    })
+  } else if (board === 'benchling') {
+    jobs = jobs.jobs.filter(j => {
+      return j.location.name.includes('Remote') && j.title.includes("Engineer")
+    })
+  } else if (board === 'ramp') {
+    jobs = jobs.jobs.filter(j => {
+      return j.title.includes("Engineer")
+    })
+  } else if (board === 'socure') {
+    jobs = jobs.jobs.filter(j => {
+      return j.location.name.includes('Remote') && j.title.includes("Engineer")
+    })
   } else if (board === 'reddit') {
     jobs = jobs.jobs.filter(j => {
       if (!j.location.name.includes('Remote')) {
