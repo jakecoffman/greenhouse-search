@@ -54,7 +54,7 @@ export async function getJobs(board) {
   } else if (board === 'twitch') {
     jobs = jobs.jobs.filter(j => {
       const t = j.title
-      return !t.includes('Manager') && (t.includes('Engineer') || t.includes('Software'))
+      return j.location.name.includes('Remote') && !t.includes('Manager') && (t.includes('Engineer') || t.includes('Software'))
     })
   } else if (board === 'dropbox') {
     jobs = jobs.jobs.filter(j => {

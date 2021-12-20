@@ -1,7 +1,7 @@
 <script>
   import {onMount} from "svelte";
   import {getJob, getJobs} from "../services.js";
-  import { fly } from 'svelte/transition';
+  import { fly, fade } from 'svelte/transition';
 
   let board, jobs
   onMount(async () => {
@@ -48,7 +48,7 @@
     </h2>
 
     {#each filteredJobs as job}
-      <div class="jobs">
+      <div class="jobs" transition:fade|local>
         <a href="{job.absolute_url}" target="_blank">
           {job.title}
         </a>
